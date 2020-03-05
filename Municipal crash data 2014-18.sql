@@ -98,12 +98,17 @@ ILLEGAL_DRUG_RELATED,
 SCHOOL_BUS_UNIT, 
 DRUGGED_DRIVER, 
 IMPAIRED_DRIVER, 
-OPIOID_RELATED,
+OPIOID_RELATED
 FROM DataWarehouse.Master.ALCO_PennDOT_Crashes
 where CRASH_YEAR BETWEEN 2014 AND 2018
 AND  ROAD_OWNER in ('3', '4');
 
-
-
-SELECT CRASH_YEAR, CRN from DataWarehouse.Master.ALCO_PennDOT_Crashes
+SELECT CRASH_YEAR, CRN FROM DataWarehouse.Master.ALCO_PennDOT_Crashes
 where ROAD_OWNER in ('3', '4');
+
+SELECT count(distinct CRN)   from DataWarehouse.Master.ALCO_PennDOT_Crashes
+where ROAD_OWNER in ('3', '4')
+group by CRASH_YEAR;
+
+SELECT * from DataWarehouse.Master.ALCO_PennDOT_Crashes
+where CRASH_YEAR='2018';
