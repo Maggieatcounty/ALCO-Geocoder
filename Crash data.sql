@@ -7,9 +7,7 @@ crashdata.SEGMENT,
 crashdata.SPEED_LIMIT, 
 crashdata.STREET_NAME, 
 muni.Municipality,
-crashdata.POLICE_AGCY, 
-poliag.Police_Agency_Code,
-poliag.Police_Agency_Name,
+poliag.AgencyName as Police_Agency,
 crashdata.CRASH_YEAR, 
 crashdata.CRASH_MONTH,
 crashdata.DAY_OF_WEEK, 
@@ -89,7 +87,7 @@ FROM DataWarehouse.Master.ALCO_PennDOT_Crashes_A as crashdata
 left join DataWarehouse.Master.ALCO_PennDOT_MuniList as muni 
 on crashdata.MUNICIPALITY = muni.Code 
 left join DataWarehouse.Master.ALCO_PennDOT_PoliceAgencies as poliag
-on crashdata.POLICE_AGCY = poliag.Police_Agency_Code 
+on crashdata.POLICE_AGCY = poliag.AgencyCode
 where CRASH_YEAR BETWEEN 2014 and 2018
 AND  ROAD_OWNER in ('3', '4');
 
@@ -110,6 +108,7 @@ WHERE CRASH_YEAR = '2018';
 --2018 crash data output for wprdc
 SELECT * FROM DataWarehouse.Master.ALCO_PennDOT_Crashes_A apdca
 order by CRASH_YEAR DESC;
+
 
 
 --DPW crash dash data update output
